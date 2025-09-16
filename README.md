@@ -1,13 +1,19 @@
-# Copy relative file path and line number(s) to clipboard
+# GDB Helper
 
-Support multiple cursors.
+This VS Code extension is random helper commands to enhance gdb debugging experience.
 
-Accessible through right-clicking menu items in file explorer, tabs and main editor window.
+## How to Use
 
-Commands: `copy-relative-path-and-line-numbers.both` & `copy-relative-path-and-line-numbers.path-only`
+1. Place your cursor on the line you want to copy.
+2. Press `Alt+L` (Windows/Linux) or run the command `Copy Relative Path and Line Numbers for Breakpoint Location` from the Command Palette (`F1` or `Ctrl+Shift+P`).
+3. The following format will be copied to your clipboard:
 
-Default shortcut key: `ctrl+l`(MacOS), `alt+l`(Windows/Linux)
+	```
+	- "b relative/path/to/file:lineNumber"
+	```
 
-![demo](https://www.dropbox.com/s/sh7edqqr2ciwc59/demo.gif?raw=1)
-
+	Example:
+	```
+	- "b src/main.cpp:42"
+	```
 
