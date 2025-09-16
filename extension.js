@@ -64,7 +64,7 @@ function activate(context) {
       return false;
     }
 
-    return `bt ${relativePath}:${lineNumbers.join(",")}`;
+    return `b ${relativePath}:${lineNumbers.join(",")}`;
   };
 
   let copyPathLines = function (
@@ -164,14 +164,14 @@ function activate(context) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
   console.log(
-    'Congratulations, your extension "copy-relative-path-and-line-numbers" is now active!'
+    'Congratulations, your extension "gdb-helper" is now active!'
   );
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
   let cmdFileOnlyLineNumber = vscode.commands.registerCommand(
-    "copy-relative-path-and-line-numbers.justFileLineNumber",
+    "gdb-helper.bpLocation",
     () => {
       let message = copyBreakpointLocation();
       if (message !== false) {
@@ -182,7 +182,7 @@ function activate(context) {
     }
   );
   let cmdBoth = vscode.commands.registerCommand(
-    "copy-relative-path-and-line-numbers.both",
+    "gdb-helper.both",
     () => {
       let message = copyPathLines(true);
       if (message !== false) {
@@ -193,7 +193,7 @@ function activate(context) {
     }
   );
   let cmdSelectionText = vscode.commands.registerCommand(
-    "copy-relative-path-and-line-numbers.withText",
+    "gdb-helper.withText",
     () => {
       let message = copyPathLines(true, true, true);
       if (message !== false) {
@@ -206,7 +206,7 @@ function activate(context) {
   );
 
   let cmdPathOnly = vscode.commands.registerCommand(
-    "copy-relative-path-and-line-numbers.path-only",
+    "gdb-helper.path-only",
     () => {
       let message = copyPathLines();
       if (message !== false) {
@@ -219,7 +219,7 @@ function activate(context) {
   );
 
   let cmdNoCodeBlock = vscode.commands.registerCommand(
-    "copy-relative-path-and-line-numbers.snippet",
+    "gdb-helper.snippet",
     () => {
       let message = copyPathLines(true, true, true, true);
       if (message !== false) {
@@ -232,7 +232,7 @@ function activate(context) {
   );
 
   let cmdSimpleCopyLine = vscode.commands.registerCommand(
-    "copy-relative-path-and-line-numbers.simple-copy-line",
+    "gdb-helper.simple-copy-line",
     () => {
       let message = copySimpleLine();
       if (message !== false) {
@@ -246,7 +246,7 @@ function activate(context) {
 
 
   let cmdCopyAndSaveSnippet = vscode.commands.registerCommand(
-    "copy-relative-path-and-line-numbers.copyAndSaveSnippet",
+    "gdb-helper.copyAndSaveSnippet",
     async () => {
       let message = copyPathLines(true, true, true, false, true);
       if (message !== false) {

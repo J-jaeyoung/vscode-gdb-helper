@@ -1,9 +1,9 @@
 {
-    "name": "copy-relative-path-and-line-numbers",
-    "displayName": "Copy Relative Path and Line Numbers",
+    "name": "gdb-helper",
+    "displayName": "GDB Helper",
     "description": "Support multiple cursors. Accessible through right-clicking menu items in file explorer, tabs and main editor window.",
     "version": "0.2.8",
-    "publisher": "ezforo",
+    "publisher": "J-jaeyoung",
     "repository": {},
     "icon": "images/icon.png",
     "engines": {
@@ -19,12 +19,12 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:copy-relative-path-and-line-numbers.justFileLineNumber",
-        "onCommand:copy-relative-path-and-line-numbers.both",
-        "onCommand:copy-relative-path-and-line-numbers.path-only",
-        "onCommand:copy-relative-path-and-line-numbers.withText",
-        "onCommand:copy-relative-path-and-line-numbers.snippet",
-        "onCOmmand:copy-relative-path-and-line-numbers.simple-copy-line"
+        "onCommand:gdb-helper.bpLocation",
+        "onCommand:gdb-helper.both",
+        "onCommand:gdb-helper.path-only",
+        "onCommand:gdb-helper.withText",
+        "onCommand:gdb-helper.snippet",
+        "onCommand:gdb-helper.simple-copy-line"
     ],
     "main": "./extension",
     "contributes": {
@@ -32,93 +32,93 @@
         ],
         "commands": [
             {
-                "command": "copy-relative-path-and-line-numbers.copyAndSaveSnippet",
+                "command": "gdb-helper.copyAndSaveSnippet",
                 "title": "copy_snippet_and_save_or_append_to_file"
             },
             {
-                "command": "copy-relative-path-and-line-numbers.simple-copy-line",
+                "command": "gdb-helper.simple-copy-line",
                 "title": "Copy Relative Path SIMPLE COPY LINE"
             },
             {
-                "command": "copy-relative-path-and-line-numbers.justFileLineNumber",
-                "title": "Copy Relative Path and JUST File and Line Number"
+                "command": "gdb-helper.bpLocation",
+                "title": "Copy Relative Path and Line Numbers for Breakpoint Location"
             },
             {
-                "command": "copy-relative-path-and-line-numbers.both",
+                "command": "gdb-helper.both",
                 "title": "Copy Relative Path and Line Numbers"
             },
             {
-                "command": "copy-relative-path-and-line-numbers.path-only",
+                "command": "gdb-helper.path-only",
                 "title": "Copy Relative Path"
             },
             {
-                "command": "copy-relative-path-and-line-numbers.withText",
+                "command": "gdb-helper.withText",
                 "title": "Copy Relative Path with Line Numbers and with Text"
             },
             {
-                "command": "copy-relative-path-and-line-numbers.snippet",
+                "command": "gdb-helper.snippet",
                 "title": "Copy Relative Path and Snippet without Code Block"
             }
         ],
         "menus": {
             "explorer/context": [
                 {
-                    "command": "copy-relative-path-and-line-numbers.justFileLineNumber"
+                    "command": "gdb-helper.bpLocation"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.both"
+                    "command": "gdb-helper.both"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.path-only"
+                    "command": "gdb-helper.path-only"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.withText"
+                    "command": "gdb-helper.withText"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.snippet"
+                    "command": "gdb-helper.snippet"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.simple-copy-line"
+                    "command": "gdb-helper.simple-copy-line"
                 }
             ],
             "editor/title/context": [
                 {
-                    "command": "copy-relative-path-and-line-numbers.justFileLineNumber"
+                    "command": "gdb-helper.bpLocation"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.both"
+                    "command": "gdb-helper.both"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.path-only"
+                    "command": "gdb-helper.path-only"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.withText"
+                    "command": "gdb-helper.withText"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.snippet"
+                    "command": "gdb-helper.snippet"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.simple-copy-line"
+                    "command": "gdb-helper.simple-copy-line"
                 }
             ],
             "editor/context": [
                 {
-                    "command": "copy-relative-path-and-line-numbers.justFileLineNumber"
+                    "command": "gdb-helper.bpLocation"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.both"
+                    "command": "gdb-helper.both"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.path-only"
+                    "command": "gdb-helper.path-only"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.withText"
+                    "command": "gdb-helper.withText"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.snippet"
+                    "command": "gdb-helper.snippet"
                 },
                 {
-                    "command": "copy-relative-path-and-line-numbers.simple-copy-line"
+                    "command": "gdb-helper.simple-copy-line"
                 }
             ]
         },
