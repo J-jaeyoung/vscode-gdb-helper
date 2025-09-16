@@ -29,6 +29,11 @@
     "main": "./extension",
     "contributes": {
         "keybindings": [
+            {
+                "command": "gdb-helper.bpLocation",
+                "key": "alt+l",
+                "when": "editorTextFocus"
+            }
         ],
         "commands": [
             {
