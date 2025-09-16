@@ -6,6 +6,7 @@ const clipboardy = require("clipboardy");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
+  const pathWarningMessage = "File path not found!";
   let copySimpleLine = function () {
     let editor = vscode.window.activeTextEditor;
     if (!editor) {
@@ -26,6 +27,46 @@ function activate(context) {
     return copyString
   };
 
+  let copyBreakpointLocation = function () {
+    if (!vscode.workspace.rootPath) {
+      vscode.window.showWarningMessage(pathWarningMessage);
+      return false;
+    }
+
+    let editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showWarningMessage(pathWarningMessage);
+      return false;
+    }
+
+    let doc = editor.document;
+    if (doc.isUntitled) {
+      vscode.window.showWarningMessage(pathWarningMessage);
+      return false;
+    }
+
+    const relativePath = vscode.workspace
+      .asRelativePath(doc.fileName, false)
+      .replace(/\\/g, "/");
+
+    const lineNumbers = [];
+    editor.selections.forEach((selection) => {
+      if (selection.isSingleLine) {
+        lineNumbers.push(selection.active.line + 1);
+      } else {
+        lineNumbers.push(
+          `${selection.start.line + 1}:${selection.end.line + 1}`
+        );
+      }
+    });
+
+    if (lineNumbers.length === 0) {
+      return false;
+    }
+
+    return `bt ${relativePath}:${lineNumbers.join(",")}`;
+  };
+
   let copyPathLines = function (
     withLineNumber = false,
     withSelection = false,
@@ -40,21 +81,20 @@ function activate(context) {
       )
       .then((symbols) => { });
 
-    let alertMessage = "File path not found!";
     if (!vscode.workspace.rootPath) {
-      vscode.window.showWarningMessage(alertMessage);
+      vscode.window.showWarningMessage(pathWarningMessage);
       return false;
     }
 
     let editor = vscode.window.activeTextEditor;
     if (!editor) {
-      vscode.window.showWarningMessage(alertMessage);
+      vscode.window.showWarningMessage(pathWarningMessage);
       return false;
     }
 
     let doc = editor.document;
     if (doc.isUntitled) {
-      vscode.window.showWarningMessage(alertMessage);
+      vscode.window.showWarningMessage(pathWarningMessage);
       return false;
     }
 
@@ -133,7 +173,7 @@ function activate(context) {
   let cmdFileOnlyLineNumber = vscode.commands.registerCommand(
     "copy-relative-path-and-line-numbers.justFileLineNumber",
     () => {
-      let message = copyPathLines(true, false, true);
+      let message = copyBreakpointLocation();
       if (message !== false) {
         clipboardy.write(message).then(() => {
           // toast(message);
